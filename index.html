@@ -4,18 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
-
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/web-app-manifest-192x192.png" />
   <title>My PWA</title>
 </head>
 <body>
   <h1>Welcome to My PWA</h1>
   <p>This is a simple Progressive Web App.</p>
   <script>
-    if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js').then(() => {
-    console.log('Service Worker Registered');
-  });
+ if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      console.log('ServiceWorker registered with scope:', registration.scope);
+    })
+    .catch(error => {
+      console.error('ServiceWorker registration failed:', error);
+    });
 }
+
   </script>
 </body>
 </html>
